@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Star Silver Stones | Dubai Bespoke Natural Gemstones & Luxury Silver Rings</title>
+  
+  <!-- Meta & SEO -->
+  <meta name="description" content="Star Silver Stones Dubai - Handcrafted certified natural gemstones (Ruby, Emerald, Sapphire, Turquoise, Aqeeq) set in 925 Sterling Silver. Delivery across UAE, GCC, and worldwide insured shipping.">
+  <meta property="og:title" content="Star Silver Stones | Dubai Bespoke Natural Gemstones">
+  <meta property="og:description" content="Authentic handcrafted artisan rings, certified natural gemstones, and bespoke jewelry from Dubai to the world.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Google Fonts: Cinzel Decorative + Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind !== 'undefined') {
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              noir: {
+                950: '#07090E',
+                900: '#0B0F17',
+                850: '#111723',
+                800: '#182030',
+                700: '#26334A'
+              },
+              dubaiGold: {
+                600: '#B8860B',
+                500: '#D4AF37', // Pure Dubai 24k Gold Hue
+                400: '#E5C158',
+                300: '#F3DB8B',
+                100: '#FCF7E8'
+              },
+              silver925: {
+                100: '#F8FAFC',
+                200: '#E2E8F0',
+                300: '#CBD5E1',
+                400: '#94A3B8'
+              },
+              emeraldGlow: '#0F5132',
+              rubyGlow: '#842029'
+            },
+            fontFamily: {
+              cinzel: ['Cinzel', 'serif'],
+              serif: ['Cormorant Garamond', 'serif'],
+              sans: ['Plus Jakarta Sans', 'sans-serif']
+            }
+          }
+        }
+      };
+    }
+  </script>
+
+  <!-- React 18 & Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #07090E;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .font-serif-luxury {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .gold-shimmer {
+      background: linear-gradient(90deg, #D4AF37 0%, #FFF4D0 50%, #D4AF37 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: goldGleam 4s linear infinite;
+    }
+    @keyframes goldGleam {
+      to { background-position: 200% center; }
+    }
+    .gold-box-glow {
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.15);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="selection:bg-dubaiGold-500 selection:text-noir-950">
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo } = React;
+
+// Verified Dubai Business Profile
+const BRAND = {
+  name: "Star Silver Stones",
+  arabicName: "ستار سيلفر ستونز دبي",
+  tagline: "Custom-Made Natural Gemstones & Handcrafted 925 Sterling Silver Rings",
+  location: "Dubai, United Arab Emirates (UAE)",
+  phoneDisplay: "+971 50 278 6062",
+  phoneRaw: "+971502786062",
+  whatsappUrl: "https://wa.me/971502786062",
+  instagram: "@starsilverjewellery",
+  instagramUrl: "https://www.instagram.com/starsilverjewellery/",
+  followers: "51,000+",
+  postsCount: "1,230+",
+  shippingGuarantee: "UAE Express • GCC Courier • Insured Worldwide Airfreight (USA, UK, Canada, Australia)"
+};
+
+// Luxury Curated Gemstone Catalog
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Royal Burmese Ruby (Yaqoot) Hand-Engraved Ring",
+    category: "ruby",
+    gemstone: "Natural Unheated Certified Burmese Ruby",
+    metal: "925 Solid Sterling Silver with 24K Gold Filigree",
+    priceAED: 1150,
+    originalAED: 1450,
+    badge: "Masterpiece",
+    origin: "Burma (Myanmar)",
+    craftsmanship: "Hand-chiseled Ottoman pattern",
+    rating: 5.0,
+    reviews: 42,
+    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80",
+    description: "Deep pigeon-blood natural Ruby gemstone mounted on heavy solid 925 sterling silver with intricate hand-engraved motifs. Comes with gemological certificate of authenticity."
+  },
+  {
+    id: 2,
+    name: "Colombian Emerald (Zamrud) Solitaire Signet",
+    category: "emerald",
+    gemstone: "Natural Colombian Emerald (Vibrant Green)",
+    metal: "High-Polish 925 Sterling Silver",
+    priceAED: 950,
+    originalAED: 1200,
+    badge: "Trending",
+    origin: "Muzo, Colombia",
+    craftsmanship: "Classic Royal Signet setting",
+    rating: 4.9,
+    reviews: 58,
+    image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80",
+    description: "Exceptional clarity and fire. A majestic emerald cut framed in artisan brushed silver, designed for discerning collectors and daily distinction."
+  },
+  {
+    id: 3,
+    name: "Kashmiri Cornflower Blue Sapphire (Neelam) Ring",
+    category: "sapphire",
+    gemstone: "Natural Royal Blue Sapphire",
+    metal: "925 Silver with Rhodium Anti-Tarnish Coating",
+    priceAED: 1450,
+    originalAED: 1800,
+    badge: "Exclusive",
+    origin: "Kashmir Valley",
+    craftsmanship: "Prong-set micro-pave detailing",
+    rating: 5.0,
+    reviews: 29,
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+    description: "Legendary velvet-blue saturation. A rare untreated natural sapphire gemstone that symbolizes wisdom, royalty, and timeless Dubai luxury."
+  },
+  {
+    id: 4,
+    name: "Nishapuri Persian Turquoise (Feroza) Ring",
+    category: "turquoise",
+    gemstone: "Authentic Neyshabur Natural Turquoise",
+    metal: "Hand-Carved 925 Sterling Silver",
+    priceAED: 650,
+    originalAED: 850,
+    badge: "Heritage",
+    origin: "Neyshabur, Persia",
+    craftsmanship: "Traditional Persian floral relief",
+    rating: 4.9,
+    reviews: 73,
+    image: "https://images.unsplash.com/photo-1611591475155-4284ec289e0d?auto=format&fit=crop&w=800&q=80",
+    description: "Vivid sky-blue matrix-free Persian turquoise known for its spiritual harmony and protective lore. Set on a substantial masculine silver band."
+  },
+  {
+    id: 5,
+    name: "Royal Yemeni Red Aqeeq (Carnelian) Signet",
+    category: "aqeeq",
+    gemstone: "Authentic Mountain-Mined Yemeni Red Aqeeq",
+    metal: "Heavyweight 925 Sterling Silver",
+    priceAED: 600,
+    originalAED: 780,
+    badge: "Bestseller",
+    origin: "Yemen (Sana'a Mountains)",
+    craftsmanship: "Deep-stamp royal seal border",
+    rating: 5.0,
+    reviews: 94,
+    image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80",
+    description: "Translucent deep crimson glow under natural light. Highly prized across the Arab world and international gemstone connoisseurs."
+  },
+  {
+    id: 6,
+    name: "Natural Pyrite & Obsidian Statement Ring",
+    category: "statement",
+    gemstone: "Golden Crystal Pyrite Cluster",
+    metal: "Oxidized Vintage 925 Silver",
+    priceAED: 450,
+    originalAED: 600,
+    badge: "Modern Artisan",
+    origin: "Peru & Arizona",
+    craftsmanship: "Raw-mineral geometric bezel",
+    rating: 4.8,
+    reviews: 36,
+    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80",
+    description: "Bold contrast of raw metallic golden pyrite crystals encased in a modern brutalist silver setting. Striking conversation starter."
+  }
+];
+
+// Currencies
+const CURRENCIES = {
+  AED: { symbol: "AED ", rate: 1, label: "AED (د.إ)" },
+  USD: { symbol: "$", rate: 0.272, label: "USD ($)" },
+  GBP: { symbol: "£", rate: 0.215, label: "GBP (£)" },
+  EUR: { symbol: "€", rate: 0.254, label: "EUR (€)" },
+  SAR: { symbol: "SAR ", rate: 1.02, label: "SAR (ر.س)" }
+};
+
+// Live Global Orders for Social Proof
+const LIVE_ORDERS = [
+  { name: "Hamdan Al-Maktoum", city: "Dubai Marina, UAE", item: "Royal Burmese Ruby (Yaqoot) Ring", time: "4 mins ago" },
+  { name: "Sarah Jenkins", city: "Mayfair, London, UK", item: "Colombian Emerald (Zamrud) Signet", time: "8 mins ago" },
+  { name: "Fahad Al-Otaibi", city: "Riyadh, Saudi Arabia", item: "Nishapuri Persian Turquoise Ring", time: "14 mins ago" },
+  { name: "Marcus Vance", city: "Beverly Hills, CA, USA", item: "Kashmiri Blue Sapphire Ring", time: "19 mins ago" },
+  { name: "Dr. Tariq Mansoor", city: "Abu Dhabi, UAE", item: "Royal Yemeni Red Aqeeq Signet", time: "25 mins ago" }
+];
+
+function App() {
+  const [category, setCategory] = useState("all");
+  const [currency, setCurrency] = useState("AED");
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [quickViewItem, setQuickViewItem] = useState(null);
+  const [fomoIndex, setFomoIndex] = useState(0);
+  const [showFomo, setShowFomo] = useState(true);
+  const [shoppersCount, setShoppersCount] = useState(27);
+
+  // Form
+  const [orderForm, setOrderForm] = useState({
+    name: "",
+    phone: "",
+    country: "UAE (Same-Day / Next-Day Delivery)",
+    address: "",
+    ringSize: "US 9 / EU 60",
+    notes: ""
+  });
+
+  // Lucide Icons
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  });
+
+  // FOMO loop
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setShowFomo(false);
+      setTimeout(() => {
+        setFomoIndex(prev => (prev + 1) % LIVE_ORDERS.length);
+        setShowFomo(true);
+      }, 700);
+    }, 7500);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Shopper counter fluctuation
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setShoppersCount(prev => Math.max(18, Math.min(42, prev + (Math.random() > 0.5 ? 1 : -1))));
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Filter
+  const filteredProducts = useMemo(() => {
+    if (category === "all") return PRODUCTS;
+    return PRODUCTS.filter(p => p.category === category);
+  }, [category]);
+
+  // Formatter
+  const formatPrice = (aedAmount) => {
+    const cur = CURRENCIES[currency];
+    const val = Math.round(aedAmount * cur.rate);
+    return `${cur.symbol}${val.toLocaleString()}`;
+  };
+
+  // Cart operations
+  const addToCart = (product) => {
+    setCart(prev => {
+      const exists = prev.find(i => i.id === product.id);
+      if (exists) {
+        return prev.map(i => i.id === product.id ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, { ...product, qty: 1 }];
+    });
+    setIsCartOpen(true);
+  };
+
+  const updateQty = (id, delta) => {
+    setCart(prev => prev.map(i => {
+      if (i.id === id) {
+        const n = i.qty + delta;
+        return n > 0 ? { ...i, qty: n } : null;
+      }
+      return i;
+    }).filter(Boolean));
+  };
+
+  const cartTotal = useMemo(() => {
+    return cart.reduce((sum, i) => sum + (i.priceAED * i.qty), 0);
+  }, [cart]);
+
+  // WhatsApp Checkout Generator
+  const handleWhatsAppOrder = (e) => {
+    e.preventDefault();
+    if (!orderForm.name || !orderForm.phone || !orderForm.address) {
+      alert("Please enter your name, contact number, and delivery address.");
+      return;
+    }
+
+    const itemsSummary = cart.length > 0
+      ? cart.map(i => `• ${i.name} (${i.gemstone}) x ${i.qty} = ${formatPrice(i.priceAED * i.qty)}`).join('\n')
+      : `• ${PRODUCTS[0].name}`;
+
+    const message = 
+`Hello Star Silver Stones Dubai,
+I would like to place an order from your luxury showcase website:
+
+🛍️ *ORDER DETAILS:*
+${itemsSummary}
+💰 *TOTAL AMOUNT:* ${formatPrice(cartTotal || PRODUCTS[0].priceAED)}
+💍 *RING SIZE:* ${orderForm.ringSize}
+🌍 *DESTINATION:* ${orderForm.country}
+
+👤 *CLIENT INFORMATION:*
+• Name: ${orderForm.name}
+• WhatsApp/Phone: ${orderForm.phone}
+• Delivery Address: ${orderForm.address}
+${orderForm.notes ? `• Special Instructions: ${orderForm.notes}\n` : ''}
+Please confirm availability and dispatch timeline. Thank you!`;
+
+    window.open(`https://wa.me/971502786062?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-noir-950 text-silver925-100">
+
+      {/* 1. MANDATORY NOTICE BANNER: CONCEPT DEMO STORE + CRYPTOWEBBUILD BACKLINK */}
+      <div className="bg-noir-900 border-b border-dubaiGold-500/30 text-silver925-200 py-2 px-4 text-xs">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
+          <div className="flex items-center gap-2">
+            <span className="bg-dubaiGold-500 text-noir-950 font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider animate-pulse">
+              ⚠️ CONCEPT DEMO STORE
+            </span>
+            <span className="text-gray-300">
+              Bespoke DTC E-Commerce Experience Engineered for <strong className="text-dubaiGold-400">{BRAND.name} (Dubai)</strong> • 100% Customizable for your Brand
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://cryptowebbuild.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-dubaiGold-400 hover:text-dubaiGold-300 font-semibold underline underline-offset-4 flex items-center gap-1 transition"
+            >
+              <span>Designed & Engineered by CryptoWebBuild</span>
+              <i data-lucide="external-link" className="w-3.5 h-3.5"></i>
+            </a>
+            <span className="text-noir-700 hidden md:inline">|</span>
+            <a href={BRAND.whatsappUrl} target="_blank" className="text-gray-300 hover:text-white flex items-center gap-1">
+              <i data-lucide="phone" className="w-3 h-3 text-dubaiGold-400"></i>
+              <span>{BRAND.phoneDisplay}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. TOP DISPATCH & CURRENCY TICKER */}
+      <div className="bg-noir-850 text-dubaiGold-400 py-1.5 px-4 text-xs border-b border-noir-700/60">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span className="font-medium text-silver925-200">
+              ✈️ Direct from Dubai: Same-day UAE Dispatch • GCC Express • Insured Air Courier to USA, UK & Europe
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-4 text-silver925-300">
+            <span className="flex items-center gap-1">
+              <i data-lucide="shield-check" className="w-3.5 h-3.5 text-dubaiGold-400"></i>
+              Certified Natural Gemstones & 925 Solid Silver
+            </span>
+            <span className="text-noir-700">•</span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-gray-400">Currency:</span>
+              <select 
+                value={currency} 
+                onChange={(e) => setCurrency(e.target.value)}
+                className="bg-noir-900 text-dubaiGold-400 border border-dubaiGold-500/40 rounded px-2 py-0.5 text-xs focus:outline-none"
+              >
+                {Object.keys(CURRENCIES).map(c => (
+                  <option key={c} value={c}>{CURRENCIES[c].label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. LUXURY BRAND NAVIGATION HEADER */}
+      <header className="sticky top-0 z-40 bg-noir-950/95 backdrop-blur-md border-b border-dubaiGold-500/20 shadow-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Logo */}
+            <a href="#" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-dubaiGold-400 to-dubaiGold-600 text-noir-950 flex items-center justify-center font-cinzel font-black text-xl shadow-lg border border-dubaiGold-300">
+                ★
+              </div>
+              <div>
+                <span className="font-cinzel text-xl sm:text-2xl font-bold tracking-wider text-white block leading-none">
+                  STAR SILVER
+                </span>
+                <span className="text-[10px] tracking-[0.25em] text-dubaiGold-400 uppercase font-semibold block mt-0.5">
+                  STONES • DUBAI
+                </span>
+              </div>
+            </a>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-semibold text-silver925-200">
+              <a href="#collection" className="hover:text-dubaiGold-400 transition">Gemstone Vault</a>
+              <a href="#masterpieces" className="hover:text-dubaiGold-400 transition">Masterpiece Rings</a>
+              <a href="#heritage" className="hover:text-dubaiGold-400 transition">Dubai Craftsmanship</a>
+              <a href="#reviews" className="hover:text-dubaiGold-400 transition">Collector Reviews</a>
+              <a href="#contact" className="hover:text-dubaiGold-400 transition">Private Concierge</a>
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center space-x-4">
+              <a 
+                href={BRAND.whatsappUrl} 
+                target="_blank"
+                className="hidden sm:inline-flex items-center gap-2 bg-[#25D366]/15 hover:bg-[#25D366] text-[#25D366] hover:text-white px-4 py-2 rounded-full text-xs font-bold transition border border-[#25D366]/40"
+              >
+                <i data-lucide="message-circle" className="w-4 h-4"></i>
+                <span>Direct WhatsApp</span>
+              </a>
+
+              {/* Cart Trigger */}
+              <button 
+                onClick={() => setIsCartOpen(true)}
+                className="relative bg-noir-850 hover:bg-noir-800 text-dubaiGold-400 p-2.5 rounded-full border border-dubaiGold-500/30 transition shadow-lg"
+              >
+                <i data-lucide="shopping-bag" className="w-5 h-5"></i>
+                {cart.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-rubyGlow text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-noir-950">
+                    {cart.reduce((s, i) => s + i.qty, 0)}
+                  </span>
+                )}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </header>
+
+      {/* 4. HERO SECTION: $200M DUBAI LUXURY AESTHETIC */}
+      <section className="relative bg-gradient-to-b from-noir-900 via-noir-950 to-noir-950 py-16 lg:py-24 overflow-hidden">
+        {/* Subtle Luxury Pattern */}
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:28px_28px]"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-noir-850 border border-dubaiGold-500/40 text-dubaiGold-400 text-xs font-semibold">
+                <span className="w-2 h-2 rounded-full bg-dubaiGold-400"></span>
+                <span>Dubai's Premier Handcrafted Natural Gemstone Atelier</span>
+              </div>
+
+              <h1 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white">
+                Rare Earth Crystals, <br/>
+                <span className="gold-shimmer">Hand-Forged in Silver</span>
+              </h1>
+
+              <p className="text-silver925-300 text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+                Discover untamed natural Rubies, Colombian Emeralds, Royal Blue Sapphires, Persian Turquoise, and Yemeni Aqeeq. Each piece individually cast and chiseled in heavy solid 925 sterling silver in our Dubai workshop.
+              </p>
+
+              {/* Live Shopper Proof */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-xs text-amber-300 bg-noir-850/80 w-fit mx-auto lg:mx-0 px-3 py-1.5 rounded-lg border border-amber-400/20">
+                <i data-lucide="flame" className="w-4 h-4 text-amber-400 animate-pulse"></i>
+                <span><strong>{shoppersCount} collectors</strong> currently exploring the Dubai vault</span>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                <a 
+                  href="#collection" 
+                  className="w-full sm:w-auto bg-gradient-to-r from-dubaiGold-500 to-dubaiGold-400 hover:from-dubaiGold-400 hover:to-dubaiGold-300 text-noir-950 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-dubaiGold-500/25 transition flex items-center justify-center gap-2 text-sm tracking-wide uppercase font-cinzel"
+                >
+                  <span>Explore Vault</span>
+                  <i data-lucide="arrow-right" className="w-4 h-4"></i>
+                </a>
+
+                <a 
+                  href={BRAND.whatsappUrl} 
+                  target="_blank"
+                  className="w-full sm:w-auto bg-noir-850 hover:bg-noir-800 text-white font-semibold px-6 py-4 rounded-xl border border-dubaiGold-500/40 hover:border-dubaiGold-500 transition flex items-center justify-center gap-2 text-sm"
+                >
+                  <i data-lucide="message-square" className="w-4 h-4 text-dubaiGold-400"></i>
+                  <span>WhatsApp Concierge</span>
+                </a>
+              </div>
+
+              {/* Trust Metric Badges */}
+              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-noir-800 text-center lg:text-left">
+                <div>
+                  <div className="font-cinzel text-2xl font-bold text-dubaiGold-400">51,000+</div>
+                  <div className="text-xs text-silver925-400">Global Instagram Community</div>
+                </div>
+                <div>
+                  <div className="font-cinzel text-2xl font-bold text-dubaiGold-400">100% Solid</div>
+                  <div className="text-xs text-silver925-400">Certified 925 Sterling Silver</div>
+                </div>
+                <div>
+                  <div className="font-cinzel text-2xl font-bold text-dubaiGold-400">Insured</div>
+                  <div className="text-xs text-silver925-400">Worldwide Doorstep Airfreight</div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Card Feature */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                <div className="absolute -inset-2 bg-gradient-to-r from-dubaiGold-500 to-emerald-600 rounded-3xl blur opacity-25"></div>
+                <div className="relative rounded-2xl overflow-hidden border border-dubaiGold-500/40 shadow-2xl bg-noir-900">
+                  <img 
+                    src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85" 
+                    alt="Dubai Natural Gemstone Ring"
+                    className="w-full h-[460px] object-cover object-center transform hover:scale-105 transition duration-700"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-noir-950 via-noir-950/80 to-transparent p-6">
+                    <span className="text-[11px] uppercase tracking-widest text-dubaiGold-400 font-bold block mb-1">
+                      Featured Masterpiece
+                    </span>
+                    <h3 className="font-cinzel text-xl font-bold text-white">
+                      Royal Burmese Ruby (Yaqoot)
+                    </h3>
+                    <p className="text-xs text-silver925-300 mt-1">
+                      Pigeon-blood unheated natural ruby encased in 925 Ottoman silver.
+                    </p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-dubaiGold-400 font-bold text-lg font-cinzel">{formatPrice(1150)}</span>
+                      <button 
+                        onClick={() => addToCart(PRODUCTS[0])}
+                        className="bg-dubaiGold-500 text-noir-950 text-xs font-bold px-4 py-2 rounded-lg hover:bg-dubaiGold-400 transition font-cinzel uppercase tracking-wider"
+                      >
+                        Acquire Piece
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 5. HERITAGE PROPOSITIONS */}
+      <section className="bg-noir-900 py-12 border-y border-noir-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-noir-800 border border-dubaiGold-500/30 flex items-center justify-center text-dubaiGold-400 shrink-0">
+                <i data-lucide="gem" className="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-sm uppercase tracking-wide">100% Natural Earth Stones</h4>
+                <p className="text-xs text-silver925-400 mt-1">
+                  Zero lab-grown or synthetic imitations. Mined from historic gemstone deposits globally.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-noir-800 border border-dubaiGold-500/30 flex items-center justify-center text-dubaiGold-400 shrink-0">
+                <i data-lucide="shield" className="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-sm uppercase tracking-wide">Solid 925 Hallmark</h4>
+                <p className="text-xs text-silver925-400 mt-1">
+                  Guaranteed purity silver cast with anti-tarnish rhodium or 24K gold accents.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-noir-800 border border-dubaiGold-500/30 flex items-center justify-center text-dubaiGold-400 shrink-0">
+                <i data-lucide="plane" className="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-sm uppercase tracking-wide">Insured Air Express</h4>
+                <p className="text-xs text-silver925-400 mt-1">
+                  Fully tracked, signature-required delivery to USA, Canada, UK, Germany, and GCC.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-noir-800 border border-dubaiGold-500/30 flex items-center justify-center text-dubaiGold-400 shrink-0">
+                <i data-lucide="sparkles" className="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-sm uppercase tracking-wide">Custom Bespoke Forging</h4>
+                <p className="text-xs text-silver925-400 mt-1">
+                  Send your preferred ring size or custom stone preference directly via WhatsApp.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 6. GEMSTONE VAULT CATALOG */}
+      <section id="collection" className="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-dubaiGold-400 font-bold uppercase tracking-[0.25em] text-xs block mb-2 font-cinzel">
+            The Dubai Collection
+          </span>
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Curated Artisan Vault
+          </h2>
+          <p className="text-silver925-300 text-sm sm:text-base mt-3">
+            Hand-inspected, masterfully set, and ready for immediate global dispatch.
+          </p>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+            {[
+              { id: "all", label: "All Masterpieces" },
+              { id: "ruby", label: "Burmese Ruby (Yaqoot)" },
+              { id: "emerald", label: "Colombian Emerald" },
+              { id: "sapphire", label: "Blue Sapphire (Neelam)" },
+              { id: "turquoise", label: "Persian Turquoise" },
+              { id: "aqeeq", label: "Yemeni Aqeeq" }
+            ].map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setCategory(cat.id)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition ${
+                  category === cat.id 
+                    ? "bg-dubaiGold-500 text-noir-950 font-bold shadow-lg" 
+                    : "bg-noir-900 text-silver925-300 hover:bg-noir-800 border border-noir-700"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProducts.map(p => (
+            <div 
+              key={p.id}
+              className="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-dubaiGold-500/60 transition-all duration-300 shadow-xl group flex flex-col justify-between"
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-noir-850 cursor-pointer" onClick={() => setQuickViewItem(p)}>
+                <img 
+                  src={p.image} 
+                  alt={p.name}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                />
+                
+                <div className="absolute top-3 left-3 bg-noir-950/90 text-dubaiGold-400 text-[11px] font-bold px-3 py-1 rounded-full border border-dubaiGold-500/40 font-cinzel">
+                  {p.badge}
+                </div>
+
+                <div className="absolute top-3 right-3 bg-noir-950/80 text-silver925-200 text-[10px] px-2.5 py-1 rounded-full flex items-center gap-1 border border-noir-700">
+                  <i data-lucide="map-pin" className="w-3 h-3 text-dubaiGold-400"></i>
+                  <span>{p.origin}</span>
+                </div>
+
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                  <span className="bg-white text-noir-950 font-bold text-xs px-4 py-2 rounded-full shadow-lg font-cinzel uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="eye" className="w-4 h-4"></i>
+                    Inspect Piece
+                  </span>
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className="p-6 flex flex-col flex-1 justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-silver925-400 mb-1.5">
+                    <span>{p.metal}</span>
+                    <div className="flex items-center text-amber-400 gap-1">
+                      <i data-lucide="star" className="w-3.5 h-3.5 fill-current"></i>
+                      <span className="font-bold text-white">{p.rating}</span>
+                      <span className="text-gray-500">({p.reviews})</span>
+                    </div>
+                  </div>
+
+                  <h3 
+                    onClick={() => setQuickViewItem(p)}
+                    className="font-cinzel font-bold text-base text-white group-hover:text-dubaiGold-400 transition cursor-pointer line-clamp-1"
+                  >
+                    {p.name}
+                  </h3>
+
+                  <p className="text-xs text-silver925-400 mt-1 line-clamp-2 leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
+
+                {/* Price & Action */}
+                <div className="pt-3 border-t border-noir-800 flex items-center justify-between">
+                  <div>
+                    <div className="text-xs text-gray-500 line-through">
+                      {formatPrice(p.originalAED)}
+                    </div>
+                    <div className="font-bold text-xl text-dubaiGold-400 font-cinzel">
+                      {formatPrice(p.priceAED)}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => addToCart(p)}
+                      className="bg-noir-800 hover:bg-dubaiGold-500 hover:text-noir-950 text-white p-3 rounded-xl transition border border-noir-700"
+                      title="Add to Bag"
+                    >
+                      <i data-lucide="shopping-bag" className="w-4 h-4"></i>
+                    </button>
+                    <button 
+                      onClick={() => addToCart(p)}
+                      className="bg-dubaiGold-500 hover:bg-dubaiGold-400 text-noir-950 font-bold px-4 py-3 rounded-xl text-xs transition font-cinzel uppercase tracking-wider"
+                    >
+                      Order
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* 7. PRIVATE CONCIERGE & GLOBAL TESTIMONIALS */}
+      <section id="reviews" className="bg-noir-900 py-16 lg:py-24 border-t border-noir-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-dubaiGold-400 font-bold uppercase tracking-[0.25em] text-xs block mb-2 font-cinzel">
+              Client Commendations
+            </span>
+            <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-white">
+              Verified International Collectors
+            </h2>
+            <p className="text-silver925-400 text-sm mt-2">
+              Feedback from our 51,000+ member global community on Instagram
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Hamad Al-Kaabi",
+                city: "Dubai, United Arab Emirates",
+                text: "The Burmese Ruby ring arrived in a velvet wooden box with certificate. The silver work is heavy, masculine, and flawlessly polished. Definitely ordering my next Zamrud ring from them.",
+                rating: 5,
+                date: "2 days ago"
+              },
+              {
+                name: "Edward Sterling",
+                city: "London, United Kingdom",
+                text: "Shipped from Dubai to London in 3 business days via DHL Express. The natural Persian turquoise has an intense sky-blue luster that pictures don't do justice. 10/10 service.",
+                rating: 5,
+                date: "5 days ago"
+              },
+              {
+                name: "Sultan Al-Ghamdi",
+                city: "Riyadh, Saudi Arabia",
+                text: "Ordered two Yemeni Aqeeq rings. Exceptional craftsmanship, authentic stones, and instant WhatsApp communication throughout. Proud to wear these pieces.",
+                rating: 5,
+                date: "1 week ago"
+              }
+            ].map((rev, i) => (
+              <div key={i} className="bg-noir-850 p-8 rounded-2xl border border-noir-800 flex flex-col justify-between">
+                <div>
+                  <div className="flex text-dubaiGold-400 mb-4">
+                    {[...Array(rev.rating)].map((_, idx) => (
+                      <i key={idx} data-lucide="star" className="w-4 h-4 fill-current"></i>
+                    ))}
+                  </div>
+                  <p className="text-silver925-300 text-sm italic leading-relaxed">
+                    "{rev.text}"
+                  </p>
+                </div>
+                <div className="pt-6 mt-6 border-t border-noir-800 flex items-center justify-between">
+                  <div>
+                    <h4 className="font-bold text-white text-sm font-cinzel">{rev.name}</h4>
+                    <p className="text-xs text-dubaiGold-400">{rev.city}</p>
+                  </div>
+                  <span className="text-[11px] text-gray-500">{rev.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 8. FOOTER WITH MANDATORY CRYPTOWEBBUILD BACKLINK */}
+      <footer id="contact" className="bg-noir-950 text-silver925-300 pt-16 pb-8 border-t border-dubaiGold-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-noir-800">
+            
+            {/* Column 1 */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-dubaiGold-500 text-noir-950 flex items-center justify-center font-cinzel font-bold text-base">
+                  ★
+                </div>
+                <span className="font-cinzel text-xl font-bold tracking-wider text-white">
+                  {BRAND.name}
+                </span>
+              </div>
+              <p className="text-xs text-silver925-400 leading-relaxed">
+                Dubai's premier artisan gemstone atelier. Handcrafted certified natural gemstone rings forged in heavy 925 sterling silver with worldwide insured shipping.
+              </p>
+              <div className="flex items-center space-x-3 text-dubaiGold-400">
+                <a href={BRAND.instagramUrl} target="_blank" className="p-2 rounded-full bg-noir-850 hover:bg-dubaiGold-500 hover:text-noir-950 transition">
+                  <i data-lucide="instagram" className="w-4 h-4"></i>
+                </a>
+                <a href={BRAND.whatsappUrl} target="_blank" className="p-2 rounded-full bg-noir-850 hover:bg-dubaiGold-500 hover:text-noir-950 transition">
+                  <i data-lucide="message-circle" className="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Column 2 */}
+            <div>
+              <h4 className="font-cinzel font-bold text-dubaiGold-400 text-sm mb-4 uppercase tracking-wider">Vault Collections</h4>
+              <ul className="space-y-2 text-xs text-silver925-400">
+                <li><a href="#collection" className="hover:text-white transition">Natural Burmese Ruby (Yaqoot)</a></li>
+                <li><a href="#collection" className="hover:text-white transition">Colombian Emerald (Zamrud)</a></li>
+                <li><a href="#collection" className="hover:text-white transition">Kashmiri Blue Sapphire (Neelam)</a></li>
+                <li><a href="#collection" className="hover:text-white transition">Persian Turquoise (Feroza)</a></li>
+                <li><a href="#collection" className="hover:text-white transition">Mountain Yemeni Red Aqeeq</a></li>
+              </ul>
+            </div>
+
+            {/* Column 3 */}
+            <div>
+              <h4 className="font-cinzel font-bold text-dubaiGold-400 text-sm mb-4 uppercase tracking-wider">Atelier & Concierge</h4>
+              <ul className="space-y-3 text-xs text-silver925-400">
+                <li className="flex items-start gap-2">
+                  <i data-lucide="map-pin" className="w-4 h-4 text-dubaiGold-400 shrink-0 mt-0.5"></i>
+                  <span>{BRAND.location}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <i data-lucide="phone" className="w-4 h-4 text-dubaiGold-400 shrink-0"></i>
+                  <span>{BRAND.phoneDisplay} (WhatsApp & Calls)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <i data-lucide="globe" className="w-4 h-4 text-dubaiGold-400 shrink-0"></i>
+                  <span>Global Express Delivery: UAE • GCC • USA • UK</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4 */}
+            <div>
+              <h4 className="font-cinzel font-bold text-dubaiGold-400 text-sm mb-4 uppercase tracking-wider">Payment & Security</h4>
+              <p className="text-xs text-silver925-400 mb-3">
+                We accept UAE Cash On Delivery, Apple Pay, Visa, Mastercard, and International Bank Wire.
+              </p>
+              <div className="flex flex-wrap gap-2 text-[10px] font-bold text-noir-950">
+                <span className="bg-silver925-200 px-2 py-1 rounded">Apple Pay</span>
+                <span className="bg-silver925-200 px-2 py-1 rounded">VISA</span>
+                <span className="bg-silver925-200 px-2 py-1 rounded">Mastercard</span>
+                <span className="bg-silver925-200 px-2 py-1 rounded">COD UAE</span>
+                <span className="bg-silver925-200 px-2 py-1 rounded">DHL Express</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom & MANDATORY CRYPTOWEBBUILD BACKLINK */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-silver925-400 gap-4">
+            <div>
+              © 2026 {BRAND.name}. All Rights Reserved. Engineered for International Luxury E-Commerce.
+            </div>
+            
+            {/* The Backlink */}
+            <div className="flex items-center gap-2 bg-noir-900 px-3.5 py-1.5 rounded-full border border-dubaiGold-500/25">
+              <span className="text-silver925-400">Architected & Engineered with ❤️ by</span>
+              <a 
+                href="https://cryptowebbuild.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-dubaiGold-400 hover:text-dubaiGold-300 font-bold underline underline-offset-4 flex items-center gap-1 transition"
+              >
+                <span>CryptoWebBuild</span>
+                <i data-lucide="sparkles" className="w-3.5 h-3.5 text-dubaiGold-400"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+      {/* 9. CART & INSTANT WHATSAPP CHECKOUT DRAWER */}
+      {isCartOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          <div onClick={() => setIsCartOpen(false)} className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div className="w-screen max-w-md bg-noir-900 border-l border-dubaiGold-500/30 shadow-2xl flex flex-col justify-between">
+              
+              {/* Header */}
+              <div className="p-6 bg-noir-950 text-white flex items-center justify-between border-b border-dubaiGold-500/20">
+                <div className="flex items-center gap-2">
+                  <i data-lucide="shopping-bag" className="w-5 h-5 text-dubaiGold-400"></i>
+                  <h3 className="font-cinzel font-bold text-lg text-white">Your Vault Selection</h3>
+                  <span className="text-xs bg-dubaiGold-500 text-noir-950 font-bold px-2 py-0.5 rounded-full">
+                    {cart.reduce((s, i) => s + i.qty, 0)} Items
+                  </span>
+                </div>
+                <button onClick={() => setIsCartOpen(false)} className="text-gray-400 hover:text-white">
+                  <i data-lucide="x" className="w-6 h-6"></i>
+                </button>
+              </div>
+
+              {/* Items & Form */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {cart.length === 0 ? (
+                  <div className="text-center py-12 space-y-3">
+                    <i data-lucide="shopping-bag" className="w-12 h-12 text-noir-700 mx-auto"></i>
+                    <h4 className="font-bold text-silver925-200 font-cinzel">Your bag is empty</h4>
+                    <p className="text-xs text-silver925-400">Select a handcrafted gemstone ring from our vault</p>
+                    <button onClick={() => setIsCartOpen(false)} className="mt-4 bg-dubaiGold-500 text-noir-950 font-bold text-xs px-5 py-2.5 rounded-lg font-cinzel uppercase">
+                      Browse Vault
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="space-y-4">
+                      {cart.map(item => (
+                        <div key={item.id} className="flex gap-4 p-3 bg-noir-850 rounded-xl border border-noir-700">
+                          <img src={item.image} alt={item.name} className="w-16 h-20 object-cover rounded-lg shrink-0" />
+                          <div className="flex-1 flex flex-col justify-between">
+                            <div>
+                              <h4 className="font-bold text-xs text-white line-clamp-1 font-cinzel">{item.name}</h4>
+                              <p className="text-[10px] text-dubaiGold-400">{item.gemstone}</p>
+                              <div className="text-xs font-bold text-white mt-1">{formatPrice(item.priceAED)}</div>
+                            </div>
+                            <div className="flex items-center justify-between mt-2">
+                              <div className="flex items-center border border-noir-700 rounded bg-noir-900">
+                                <button onClick={() => updateQty(item.id, -1)} className="px-2 py-0.5 text-xs text-gray-400 hover:text-white">-</button>
+                                <span className="px-2 text-xs font-bold text-white">{item.qty}</span>
+                                <button onClick={() => updateQty(item.id, 1)} className="px-2 py-0.5 text-xs text-gray-400 hover:text-white">+</button>
+                              </div>
+                              <span className="text-xs font-bold text-dubaiGold-400 font-cinzel">
+                                {formatPrice(item.priceAED * item.qty)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Delivery Details */}
+                    <div className="bg-noir-950 p-4 rounded-xl border border-dubaiGold-500/20 space-y-3">
+                      <h4 className="font-bold text-xs text-dubaiGold-400 uppercase tracking-wider flex items-center gap-1.5 font-cinzel">
+                        <i data-lucide="plane" className="w-3.5 h-3.5"></i>
+                        <span>Insured Delivery Information</span>
+                      </h4>
+
+                      <div>
+                        <label className="text-[11px] text-silver925-400 block mb-1">Full Name *</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={orderForm.name}
+                          onChange={(e) => setOrderForm({ ...orderForm, name: e.target.value })}
+                          placeholder="e.g., Sheikh Hamdan / Marcus Vance"
+                          className="w-full text-xs p-2.5 rounded-lg border border-noir-700 bg-noir-900 text-white focus:outline-none focus:border-dubaiGold-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-[11px] text-silver925-400 block mb-1">WhatsApp / Phone *</label>
+                        <input 
+                          type="tel" 
+                          required
+                          value={orderForm.phone}
+                          onChange={(e) => setOrderForm({ ...orderForm, phone: e.target.value })}
+                          placeholder="e.g., +971 50 xxx xxxx / +1 310 xxx xxxx"
+                          className="w-full text-xs p-2.5 rounded-lg border border-noir-700 bg-noir-900 text-white focus:outline-none focus:border-dubaiGold-500"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="text-[11px] text-silver925-400 block mb-1">Ring Size</label>
+                          <select 
+                            value={orderForm.ringSize}
+                            onChange={(e) => setOrderForm({ ...orderForm, ringSize: e.target.value })}
+                            className="w-full text-xs p-2.5 rounded-lg border border-noir-700 bg-noir-900 text-white focus:outline-none focus:border-dubaiGold-500"
+                          >
+                            <option value="US 7 / EU 54">US 7 / EU 54</option>
+                            <option value="US 8 / EU 57">US 8 / EU 57</option>
+                            <option value="US 9 / EU 60">US 9 / EU 60</option>
+                            <option value="US 10 / EU 62">US 10 / EU 62</option>
+                            <option value="US 11 / EU 65">US 11 / EU 65</option>
+                            <option value="Custom Size">Custom Size (WhatsApp)</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="text-[11px] text-silver925-400 block mb-1">Shipping Destination</label>
+                          <select 
+                            value={orderForm.country}
+                            onChange={(e) => setOrderForm({ ...orderForm, country: e.target.value })}
+                            className="w-full text-xs p-2.5 rounded-lg border border-noir-700 bg-noir-900 text-white focus:outline-none focus:border-dubaiGold-500"
+                          >
+                            <option value="UAE (Dubai / Abu Dhabi / Sharjah)">UAE (Local Delivery)</option>
+                            <option value="GCC (Saudi Arabia / Qatar / Kuwait / Oman)">GCC Express</option>
+                            <option value="USA / Canada (Insured Air Courier)">USA & Canada</option>
+                            <option value="United Kingdom & Europe">UK & Europe</option>
+                            <option value="Australia & New Zealand">Australia / NZ</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="text-[11px] text-silver925-400 block mb-1">Street Address / City / Postal Code *</label>
+                        <textarea 
+                          rows="2"
+                          required
+                          value={orderForm.address}
+                          onChange={(e) => setOrderForm({ ...orderForm, address: e.target.value })}
+                          placeholder="Villa / Apt #, Street, City, Country..."
+                          className="w-full text-xs p-2.5 rounded-lg border border-noir-700 bg-noir-900 text-white focus:outline-none focus:border-dubaiGold-500"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Checkout Trigger */}
+              {cart.length > 0 && (
+                <div className="p-6 bg-noir-950 border-t border-noir-800 space-y-3">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-silver925-400">Total Investment:</span>
+                    <span className="font-cinzel font-bold text-2xl text-dubaiGold-400">
+                      {formatPrice(cartTotal)}
+                    </span>
+                  </div>
+
+                  <button 
+                    onClick={handleWhatsAppOrder}
+                    className="w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold py-3.5 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition"
+                  >
+                    <i data-lucide="message-circle" className="w-5 h-5"></i>
+                    <span>Instant WhatsApp Order (1-Click)</span>
+                  </button>
+
+                  <p className="text-[10px] text-gray-500 text-center">
+                    🔒 Certified Genuine Gemstones • Insured Worldwide Doorstep Delivery
+                  </p>
+                </div>
+              )}
+
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 10. QUICK VIEW MODAL */}
+      {quickViewItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div onClick={() => setQuickViewItem(null)} className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+
+          <div className="relative bg-noir-900 border border-dubaiGold-500/30 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl z-10 grid grid-cols-1 md:grid-cols-2">
+            <div className="relative aspect-[4/5] bg-noir-950">
+              <img src={quickViewItem.image} alt={quickViewItem.name} className="w-full h-full object-cover" />
+              <div className="absolute top-3 left-3 bg-dubaiGold-500 text-noir-950 text-xs px-2.5 py-1 rounded font-bold font-cinzel">
+                {quickViewItem.badge}
+              </div>
+            </div>
+
+            <div className="p-6 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-dubaiGold-400 font-bold uppercase tracking-wider font-cinzel">{quickViewItem.origin}</span>
+                  <button onClick={() => setQuickViewItem(null)} className="text-gray-400 hover:text-white">
+                    <i data-lucide="x" className="w-5 h-5"></i>
+                  </button>
+                </div>
+
+                <h3 className="font-cinzel font-bold text-xl text-white mt-2">
+                  {quickViewItem.name}
+                </h3>
+                <div className="font-cinzel font-bold text-2xl text-dubaiGold-400 mt-1">
+                  {formatPrice(quickViewItem.priceAED)}
+                </div>
+
+                <div className="mt-4 space-y-2 text-xs text-silver925-300 border-y border-noir-800 py-3">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Gemstone:</span>
+                    <span className="font-semibold text-white">{quickViewItem.gemstone}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Metal:</span>
+                    <span className="font-semibold text-white">{quickViewItem.metal}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Crafting:</span>
+                    <span className="font-semibold text-white">{quickViewItem.craftsmanship}</span>
+                  </div>
+                </div>
+
+                <p className="text-xs text-silver925-400 mt-3 leading-relaxed">
+                  {quickViewItem.description}
+                </p>
+              </div>
+
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => {
+                    addToCart(quickViewItem);
+                    setQuickViewItem(null);
+                  }}
+                  className="flex-1 bg-dubaiGold-500 hover:bg-dubaiGold-400 text-noir-950 font-bold py-3 rounded-xl text-xs transition font-cinzel uppercase tracking-wider"
+                >
+                  Acquire Piece
+                </button>
+                <a 
+                  href={`https://wa.me/971502786062?text=${encodeURIComponent(`Hello Star Silver Stones, I am interested in acquiring ${quickViewItem.name}.`)}`}
+                  target="_blank"
+                  className="bg-[#25D366] hover:bg-[#1ebd5a] text-white p-3 rounded-xl transition flex items-center justify-center"
+                >
+                  <i data-lucide="message-circle" className="w-5 h-5"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 11. FOMO TOAST */}
+      {showFomo && (
+        <div className="fixed bottom-5 left-5 z-40 bg-noir-900/95 backdrop-blur-md border border-dubaiGold-500/40 rounded-xl shadow-2xl p-3.5 max-w-sm flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+            <i data-lucide="check-circle-2" className="w-5 h-5"></i>
+          </div>
+          <div className="text-xs">
+            <div className="font-bold text-white flex items-center gap-1 font-cinzel">
+              <span>{LIVE_ORDERS[fomoIndex].name}</span>
+              <span className="text-gray-400 font-normal font-sans">({LIVE_ORDERS[fomoIndex].city})</span>
+            </div>
+            <div className="text-dubaiGold-400 font-medium truncate max-w-[210px]">
+              Just acquired: {LIVE_ORDERS[fomoIndex].item}
+            </div>
+            <div className="text-[10px] text-gray-500 mt-0.5">
+              {LIVE_ORDERS[fomoIndex].time} • Verified Dubai Dispatch
+            </div>
+          </div>
+          <button onClick={() => setShowFomo(false)} className="text-gray-500 hover:text-white ml-1">
+            <i data-lucide="x" className="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      )}
+
+      {/* 12. FLOATING WHATSAPP CTA */}
+      <a 
+        href={BRAND.whatsappUrl} 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center group"
+        title="WhatsApp Concierge"
+      >
+        <i data-lucide="message-circle" className="w-7 h-7"></i>
+        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-bold pl-0 group-hover:pl-2">
+          WhatsApp Concierge
+        </span>
+      </a>
+
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>
